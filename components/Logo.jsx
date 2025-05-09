@@ -24,7 +24,7 @@ export default function Logo({ size = "default" }) {
   return (
     <div className={`flex items-center ${classes.container}`}>
       <Image
-        src="/logo.png"
+        src="/images/logo.png"
         alt="WeLearn Logo"
         width={150}
         height={150}
