@@ -1,73 +1,45 @@
-"use client";
+import Logo from "@/components/Logo";
+import LoginForm from "@/components/LoginForm";
 
-import { useRouter } from "next/navigation";
-import useNotify from "@/hooks/useNotify";
-import { login } from "@/services/authService";
+import { Card } from "antd";
+
+export const metadata = {
+  title: "Login | We Learn by klpod221",
+  description: "Login to your We Learn account",
+};
 
 export default function LoginPage() {
-  const router = useRouter();
-  const notify = useNotify();
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const username = formData.get("username");
-    const password = formData.get("password");
-
-    try {
-      await login(username, password);
-      notify.success("Login successful!");
-      router.push("/dashboard");
-    } catch (error) {
-      console.error("Login failed:", error);
-      notify.error(error.message || "Login failed");
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      <h1 className="text-3xl font-bold mb-6">Login</h1>
-      <form
-        className="w-full max-w-sm bg-white p-6 rounded shadow-md"
-        onSubmit={handleLogin}
-      >
-        <div className="mb-4">
-          <label
-            htmlFor="username"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
-          />
+    <div className="flex min-h-screen">
+      {/* Left side - decorative background */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-900 to-indigo-900 relative">
+        <div className="absolute inset-0 bg-opacity-10 flex flex-col items-center justify-center p-12">
+          <Logo size="default" />
+          <div className="text-white text-xl text-center max-w-md">
+              Together we learn, together we grow.
+          </div>
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-200"
+      </div>
+
+      {/* Right side - login form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8">
+        <Card
+          className="w-full max-w-md shadow-md rounded-xl border-0"
+          bordered={false}
         >
-          Login
-        </button>
-      </form>
+          <div className="flex flex-col items-center mb-6">
+            <div className="mb-2 lg:hidden">
+              <Logo showText={false} size="medium" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-800">Welcome back</h1>
+            <p className="text-gray-500 text-sm mt-1">
+              Please enter your details to sign in
+            </p>
+          </div>
+
+          <LoginForm />
+        </Card>
+      </div>
     </div>
   );
 }

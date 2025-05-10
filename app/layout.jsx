@@ -4,11 +4,11 @@ import Providers from "@/providers/Providers";
 
 export const metadata = {
   title: "We Learn - Learning Platform by klpod221",
-  description: "Learning to code together with klpod221",
-  keywords: "learning, coding, programming, web development",
+  description: "Together we learn, together we grow.",
+  keywords: "welearn, coding, programming, web development",
   openGraph: {
     title: "We Learn - Learning Platform by klpod221",
-    description: "Learning to code together with klpod221",
+    description: "Together we learn, together we grow.",
     url: "https://welearn.klpod221.com",
     siteName: "We Learn",
     images: [
