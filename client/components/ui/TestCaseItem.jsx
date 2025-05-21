@@ -1,5 +1,7 @@
 "use client";
 
+import { kbToMb } from "@/utils/helpers";
+
 import { Button } from "antd";
 import {
   PlayCircleOutlined,
@@ -8,6 +10,8 @@ import {
   CheckCircleFilled,
   CloseCircleFilled,
   QuestionCircleFilled,
+  ClockCircleOutlined,
+  DatabaseOutlined,
 } from "@ant-design/icons";
 
 export default function TestCaseItem({
@@ -57,6 +61,7 @@ export default function TestCaseItem({
             </div>
             {testResult && typeof testResult.executionTime === "number" && (
               <span className="ml-3 text-xs text-gray-500 whitespace-nowrap">
+                <ClockCircleOutlined className="mr-1" />
                 {testResult.executionTime} ms
               </span>
             )}
@@ -131,6 +136,16 @@ export default function TestCaseItem({
           )}
         </div>
       </div>
+
+      {/* Footer with memory usage */}
+      {testResult && testResult.memoryUsage && (
+        <div className="px-2 py-2 border-t border-gray-200 bg-gray-50">
+          <div className="flex items-center text-xs text-gray-500">
+            <DatabaseOutlined className="mr-1" />
+            Memory Usage: {kbToMb(testResult.memoryUsage)} MB
+          </div>
+        </div>
+      )}
     </div>
   );
 }

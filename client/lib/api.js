@@ -18,7 +18,6 @@ const instance = axios.create({
 instance.interceptors.request.use(async (config) => {
   const session = await getSession();
   if (session?.accessToken) {
-    console.log("Adding Authorization header with token:", session.accessToken);
     config.headers.Authorization = `Bearer ${session.accessToken}`;
   }
   return config;

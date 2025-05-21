@@ -261,6 +261,16 @@ export default function IDEPage({ enableSave = true }) {
 
     setTestCases(updatedTestCases);
 
+    // Update testResults if the test case exists in results
+    const testCaseIndex = testCases.findIndex((test) => test.id === updatedTestCase.id);
+    console.log("Test case index:", testCaseIndex);
+    if (testCaseIndex !== -1) {
+      // remove the testResult from the testResults array
+      const newResults = [...testResults];
+      newResults.splice(testCaseIndex, 1);
+      setTestResults(newResults);
+    }
+
     // Save updated test cases to localStorage
     if (enableSave) {
       setItem(`codeRunnerTests_${language}`, updatedTestCases, (error) => {
