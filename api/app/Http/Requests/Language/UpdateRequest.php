@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Language;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -23,7 +24,13 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|required|string|max:255',
-            'code' => 'sometimes|required|string|max:10|unique:languages,code,' . $this->route('id'),
+            'code' => [
+                'sometimes',
+                'required',
+                'string',
+                'max:10',
+                Rule::unique('languages')->ignore($this->route('language')),
+            ],
             'extension' => 'sometimes|required|string|max:10',
             'version' => 'sometimes|required|string|max:10',
         ];

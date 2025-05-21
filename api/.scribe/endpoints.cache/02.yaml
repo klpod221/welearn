@@ -80,7 +80,7 @@ endpoints:
         name: 'files[].isMain'
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -93,7 +93,7 @@ endpoints:
         -
           name: consequatur
           content: consequatur
-          isMain: true
+          isMain: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -183,7 +183,7 @@ endpoints:
         name: 'files[].isMain'
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -225,7 +225,7 @@ endpoints:
         -
           name: consequatur
           content: consequatur
-          isMain: false
+          isMain: true
       testCases:
         -
           input: consequatur

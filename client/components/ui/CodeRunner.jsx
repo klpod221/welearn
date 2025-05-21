@@ -7,7 +7,7 @@ import { getLanguages, runCode, runTests } from "@/services/codeService";
 import useNotify from "@/hooks/useNotify";
 import { getItem, setItem, removeItem } from "@/utils/localStorageUtils";
 
-import CodeEditor from "@/components/CodeEditor";
+import CodeEditor from "@/components/ui/CodeEditor";
 import InputOutputPanel from "@/components/ui/InputOutputPanel";
 import TestCasesPanel from "@/components/ui/TestCasesPanel";
 
@@ -750,7 +750,7 @@ export default function IDEPage({ enableSave = true }) {
     <div className="flex flex-col h-full">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
         <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold">Code Editor</h1>
+          <h2 className="text-xl font-bold">Code Editor</h2>
           <Select
             value={getCurrentFile()?.language || language}
             onChange={handleLanguageChange}
@@ -1096,7 +1096,7 @@ export default function IDEPage({ enableSave = true }) {
             <div className="flex">
               <button
                 onClick={() => setActiveTab("io")}
-                className={`px-4 py-2 font-medium text-sm focus:outline-none ${
+                className={`px-4 py-2 font-bold text-sm focus:outline-none ${
                   activeTab === "io"
                     ? "border-b-2 border-blue-500 text-blue-600"
                     : "text-gray-500 hover:text-gray-700 hover:border-gray-300"
@@ -1106,7 +1106,7 @@ export default function IDEPage({ enableSave = true }) {
               </button>
               <button
                 onClick={() => setActiveTab("testcases")}
-                className={`px-4 py-2 font-medium text-sm focus:outline-none ${
+                className={`px-4 py-2 font-bold text-sm focus:outline-none ${
                   activeTab === "testcases"
                     ? "border-b-2 border-blue-500 text-blue-600"
                     : "text-gray-500 hover:text-gray-700 hover:border-gray-300"

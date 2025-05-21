@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Http;
 
 class RunCodeController extends Controller
 {
+    /**
+     * The language model instance.
+     *
+     * @var \App\Models\Language
+     */
     protected $language;
 
     /**

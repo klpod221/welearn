@@ -15,11 +15,19 @@ class SettingSeeder extends Seeder
     {
         Setting::truncate();
 
-        Setting::create([
-            'key' => 'allow_registration',
-            'value' => 'true',
-            'type' => 'boolean',
-            'autoload' => 'false',
+        Setting::insert([
+            [
+                'key' => 'allow_registration',
+                'value' => 'true',
+                'type' => 'boolean',
+                'autoload' => 'false',
+            ],
+            [
+                'key' => 'new_user_must_verify',
+                'value' => 'true',
+                'type' => 'boolean',
+                'autoload' => 'false',
+            ]
         ]);
     }
 }

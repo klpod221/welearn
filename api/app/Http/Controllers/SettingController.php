@@ -8,6 +8,11 @@ use App\Models\Setting;
 
 class SettingController extends Controller
 {
+    /**
+     * The setting model instance.
+     *
+     * @var \App\Models\Setting
+     */
     protected $setting;
 
     /**
@@ -32,22 +37,11 @@ class SettingController extends Controller
     }
 
     /**
-     * Display the specified setting by ID or key.
+     * Display the specified setting by ID.
      * @group Settings
      */
-    public function show($id)
+    public function show(Setting $setting)
     {
-        // Check if the route parameter is numeric (ID) or string (key)
-        if (is_numeric($id)) {
-            $setting = $this->setting->find($id);
-        } else {
-            $setting = $this->setting->where('key', $id)->first();
-        }
-
-        if (!$setting) {
-            return response()->json(['message' => 'Setting not found'], 404);
-        }
-
         return response()->json($setting);
     }
 
@@ -66,14 +60,8 @@ class SettingController extends Controller
      * Update a setting
      * @group Settings
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, Setting $setting)
     {
-        $setting = $this->setting->find($id);
-
-        if (!$setting) {
-            return response()->json(['message' => 'Setting not found'], 404);
-        }
-
         $setting->update($request->validated());
 
         return response()->json($setting);
@@ -83,14 +71,8 @@ class SettingController extends Controller
      * Delete a setting
      * @group Settings
      */
-    public function destroy($id)
+    public function destroy(Setting $setting)
     {
-        $setting = $this->setting->find($id);
-
-        if (!$setting) {
-            return response()->json(['message' => 'Setting not found'], 404);
-        }
-
         $setting->delete();
 
         return response()->json(['message' => 'Setting deleted successfully']);

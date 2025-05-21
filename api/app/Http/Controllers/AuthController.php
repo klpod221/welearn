@@ -9,6 +9,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    /**
+     * The user model instance.
+     *
+     * @var \App\Models\User
+     */
     protected $user;
 
     /**
@@ -39,11 +44,18 @@ class AuthController extends Controller
         }
 
         // create user
+        if ($isFirstUser) {
+            $request->merge(['role' => 'admin']);
+        } else if (setting('new_user_must_verify', false)) {
+            $request->merge(['status' => 'inactive']);
+        }
+
         $user = $this->user->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $isFirstUser ? 'admin' : 'user',
+            'role' => $request->role ?? 'user',
+            'status' => $request->status ?? 'active',
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -66,6 +78,10 @@ class AuthController extends Controller
 
         if (!$user || !password_verify($request->password, $user->password)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        if ($user->status === 'inactive') {
+            return response()->json(['message' => 'User is inactive'], 403);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;

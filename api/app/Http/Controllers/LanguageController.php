@@ -8,6 +8,11 @@ use App\Models\Language;
 
 class LanguageController extends Controller
 {
+    /**
+     * The language model instance.
+     *
+     * @var \App\Models\Language
+     */
     protected $language;
 
     /**
@@ -35,14 +40,8 @@ class LanguageController extends Controller
      * Get a language by id
      * @group Programming Languages
      */
-    public function show($id)
+    public function show(Language $language)
     {
-        $language = $this->language->find($id);
-
-        if (!$language) {
-            return response()->json(['message' => 'Language not found'], 404);
-        }
-
         return response()->json($language);
     }
 
@@ -61,14 +60,8 @@ class LanguageController extends Controller
      * Update a language
      * @group Programming Languages
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, Language $language)
     {
-        $language = $this->language->find($id);
-
-        if (!$language) {
-            return response()->json(['message' => 'Language not found'], 404);
-        }
-
         $language->update($request->validated());
 
         return response()->json($language);
@@ -78,14 +71,8 @@ class LanguageController extends Controller
      * Delete a language
      * @group Programming Languages
      */
-    public function destroy($id)
+    public function destroy(Language $language)
     {
-        $language = $this->language->find($id);
-
-        if (!$language) {
-            return response()->json(['message' => 'Language not found'], 404);
-        }
-
         $language->delete();
 
         return response()->json(['message' => 'Language deleted successfully']);

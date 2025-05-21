@@ -47,13 +47,13 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/settings/{id}'
+    uri: 'api/settings/{setting_id}'
     metadata:
       groupName: Settings
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified setting by ID or key.'
+      title: 'Display the specified setting by ID.'
       description: ''
       authenticated: true
       custom: []
@@ -62,8 +62,8 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
+      setting_id:
+        name: setting_id
         description: 'The ID of the setting.'
         required: true
         example: 1
@@ -73,61 +73,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/settings/key/{key}'
-    metadata:
-      groupName: Settings
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified setting by ID or key.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {ACCESS_TOKEN}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      key:
-        name: key
-        description: 'The key.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      key: consequatur
+      setting_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -198,7 +144,7 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: boolean
+        example: float
         type: string
         enumValues:
           - string
@@ -212,7 +158,7 @@ endpoints:
         name: autoload
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -221,8 +167,8 @@ endpoints:
     cleanBodyParameters:
       key: vmqeopfuudtdsufvyvddq
       value: consequatur
-      type: boolean
-      autoload: true
+      type: float
+      autoload: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -237,7 +183,7 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/settings/{id}'
+    uri: 'api/settings/{setting_id}'
     metadata:
       groupName: Settings
       groupDescription: ''
@@ -252,8 +198,8 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
+      setting_id:
+        name: setting_id
         description: 'The ID of the setting.'
         required: true
         example: 1
@@ -263,7 +209,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      setting_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -330,7 +276,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/settings/{id}'
+    uri: 'api/settings/{setting}'
     metadata:
       groupName: Settings
       groupDescription: ''
@@ -345,9 +291,9 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the setting.'
+      setting:
+        name: setting
+        description: 'The setting.'
         required: true
         example: 1
         type: integer
@@ -356,7 +302,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      setting: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

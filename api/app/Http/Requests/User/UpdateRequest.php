@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Setting;
+namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+
 
 class UpdateRequest extends FormRequest
 {
@@ -23,16 +24,15 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'key' => [
+            'name' => 'sometimes|required|string|max:255',
+            'email' => [
                 'sometimes',
                 'required',
                 'string',
+                'email',
                 'max:255',
-                Rule::unique('settings')->ignore($this->route('setting')),
-            ],
-            'value' => 'sometimes|required|string',
-            'type' => 'sometimes|required|string|in:string,boolean,integer,float',
-            'autoload' => 'sometimes|required|boolean',
+                Rule::unique('users')->ignore($this->route('user')),
+            ]
         ];
     }
 }

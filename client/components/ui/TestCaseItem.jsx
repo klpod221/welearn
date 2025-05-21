@@ -49,7 +49,7 @@ export default function TestCaseItem({
       >
         {/* Left: Info */}
         <div className="flex flex-col flex-1 min-w-0">
-          <span className="font-medium text-gray-800 text-sm truncate">
+          <span className="font-bold text-gray-800 text-sm truncate">
             {test.name}
           </span>
           <div className="flex items-center mt-1">

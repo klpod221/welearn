@@ -126,7 +126,6 @@ export default function TestCasesPanel({
         </div>
       )}
 
-      {/* Modal for adding a new test case */}
       <Modal
         title="Add Test Case"
         open={addingTestCase}
@@ -137,7 +136,7 @@ export default function TestCasesPanel({
       >
         <TestCaseForm testCase={newTestCase} onChange={setNewTestCase} />
       </Modal>
-      {/* Modal for editing an existing test case */}
+
       <Modal
         title="Edit Test Case"
         open={!!editingTestCase}

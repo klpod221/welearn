@@ -1,4 +1,4 @@
-import Logo from "@/components/Logo";
+import Logo from "@/components/ui/Logo";
 import LoginForm from "@/components/forms/LoginForm";
 
 import { Card } from "antd";

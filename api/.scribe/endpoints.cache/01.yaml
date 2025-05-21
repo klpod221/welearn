@@ -49,7 +49,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/languages/{id}'
+    uri: 'api/languages/{language_id}'
     metadata:
       groupName: 'Programming Languages'
       groupDescription: ''
@@ -64,8 +64,8 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
+      language_id:
+        name: language_id
         description: 'The ID of the language.'
         required: true
         example: 1
@@ -75,7 +75,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      language_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -181,7 +181,7 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/languages/{id}'
+    uri: 'api/languages/{language_id}'
     metadata:
       groupName: 'Programming Languages'
       groupDescription: ''
@@ -196,8 +196,8 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
+      language_id:
+        name: language_id
         description: 'The ID of the language.'
         required: true
         example: 1
@@ -207,7 +207,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      language_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -270,7 +270,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/languages/{id}'
+    uri: 'api/languages/{language_id}'
     metadata:
       groupName: 'Programming Languages'
       groupDescription: ''
@@ -285,8 +285,8 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
+      language_id:
+        name: language_id
         description: 'The ID of the language.'
         required: true
         example: 1
@@ -296,7 +296,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      language_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

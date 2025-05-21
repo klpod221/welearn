@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 let baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -24,10 +25,17 @@ instance.interceptors.request.use(async (config) => {
 });
 
 // Response interceptor for error handling
+// Response interceptor for error handling
 instance.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response) {
+      // Handle unauthorized error (token expired or invalid)
+      if (error.response.status === 401) {
+        console.error("Authentication error:", error.response.data);
+        await signOut({ redirect: false });
+      }
+      
       // Xử lý lỗi trả về từ server
       console.error("API Error:", error.response.data);
 

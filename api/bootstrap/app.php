@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,9 +16,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'role' => \App\Http\Middleware\CheckRole::class,
+            'role' => CheckRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->map(
+            ModelNotFoundException::class,
+            function (ModelNotFoundException $e): NotFoundHttpException {
+                $modelClass = $e->getModel();
+                $modelName = class_basename($modelClass);
+                return new NotFoundHttpException("{$modelName} not found.", $e);
+            }
+        );
     })->create();

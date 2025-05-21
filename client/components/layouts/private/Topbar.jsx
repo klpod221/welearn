@@ -7,7 +7,7 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import { logout } from "@/services/authService";
 
-import Logo from "@/components/Logo";
+import Logo from "@/components/ui/Logo";
 
 import { Avatar, Dropdown, Button } from "antd";
 import {
